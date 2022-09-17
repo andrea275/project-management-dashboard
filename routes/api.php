@@ -22,7 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('status', [StatusController::class, 'index']);
-Route::get('priority', [PriorityController::class, 'index']);
-Route::apiResource('project', ProjectController::class);
-Route::apiResource('project/{project}/task', TaskController::class);
+Route::middleware('auth:api')->group(function () {
+    Route::get('status', [StatusController::class, 'index']);
+    Route::get('priority', [PriorityController::class, 'index']);
+    Route::apiResource('project', ProjectController::class);
+    Route::apiResource('project/{project}/task', TaskController::class);
+});
