@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="max-w-7xl mx-auto pt-24">
+    <div class="px-12 py-12">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block mb-16">
             Finance Mobile APP
         </h1>
