@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!project"></div>
+    <div v-if="loading"></div>
     <div class="px-12 py-12" v-else>
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block mb-16">
             {{ project.title }}
@@ -92,13 +92,15 @@ export default {
             project: null,
             statuses: null,
             saveTask: false,
-            tasks: []
+            tasks: [],
+            loading: true
         }
     },
     async mounted() {
         await this.fetchProject();
         await this.fetchStatuses();
-        this.fetchTasks();
+        await this.fetchTasks();
+        this.loading = false;
     },
     methods: {
         async fetchProject() {

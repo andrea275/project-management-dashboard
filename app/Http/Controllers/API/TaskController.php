@@ -24,10 +24,11 @@ class TaskController extends Controller
     {
         $task = Task::create([
             'title' => $request->title,
-            'status' => $request->status,
-            'priority' => $request->priority,
+            'description' => $request->description,
+            'status_id' => $request->status,
+            'priority_id' => $request->priority,
             'project_id' => $project->id,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->id()
         ]);
 
         return new TaskResource($task);
