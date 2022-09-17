@@ -24,7 +24,9 @@ class Task extends Model
     }
 
     protected static $rules = [
-        'title' => ['required', 'string', 'max:255']
+        'title' => ['required', 'string', 'max:255'],
+        'status' => ['required', 'integer', 'exists:statuses,id'],
+        'priority' => ['nullable', 'integer', 'exists:priorities,id'],
     ];
 
     public function user(): BelongsTo

@@ -7,6 +7,7 @@ for (const key in colors) {
     colorSaveList.push(`text-${colors[key]}-500`);
     colorSaveList.push(`bg-${colors[key]}-500`);
     colorSaveList.push(`bg-${colors[key]}-400`);
+    colorSaveList.push(`hover:bg-${colors[key]}-400`);
     colorSaveList.push(`bg-${colors[key]}-100`);
 }
 

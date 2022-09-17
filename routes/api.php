@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PriorityController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\StatusController;
 use App\Http\Controllers\API\TaskController;
@@ -22,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('status', [StatusController::class, 'index']);
+Route::get('priority', [PriorityController::class, 'index']);
 Route::apiResource('project', ProjectController::class);
 Route::apiResource('project/{project}/task', TaskController::class);
