@@ -11,6 +11,8 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected static function boot() {
         parent::boot();
 
@@ -23,7 +25,7 @@ class Task extends Model
         });
     }
 
-    protected static $rules = [
+    static $rules = [
         'title' => ['required', 'string', 'max:255'],
         'status' => ['required', 'integer', 'exists:statuses,id'],
         'priority' => ['nullable', 'integer', 'exists:priorities,id'],

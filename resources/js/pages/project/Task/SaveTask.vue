@@ -106,14 +106,15 @@ export default {
             this.priorities = data.data;
         },
         async saveTask() {
-            await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm);
+            //await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm());
+            await axios.post(`/api/project/${this.projectSlug}/task`, this.form);
             this.$emit('close');
         },
         clearForm() {
             const form = Object.assign({}, this.form);
 
-            form.status = form.status.id;
-            form.priority = form.priority.id;
+            form.status = this.form.status.id;
+            form.priority = this.form.priority.id;
 
             return form;
         }

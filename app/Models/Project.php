@@ -11,6 +11,8 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected static function boot() {
         parent::boot();
 
@@ -28,7 +30,7 @@ class Project extends Model
         return 'slug';
     }
 
-    protected static $rules = [
+    static $rules = [
         'title' => ['required', 'string', 'max:255']
     ];
 
