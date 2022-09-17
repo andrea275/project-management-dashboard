@@ -11,13 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
 </head>
 <body>
-<div class="flex">
+<div class="flex" id="app">
     @include('partials.sidebar')
     @yield('content')
 </div>
+
+@vite('resources/js/app.js')
 </body>
 </html>

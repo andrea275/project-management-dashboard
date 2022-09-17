@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class PriorityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,8 @@ class ProjectResource extends JsonResource
     {
         return [
             'slug' => $this->slug,
-            'title' => $this->title,
-            'user' => new UserResource($this->user)
+            'name' => $this->name,
+            'color' => $this->color
         ];
     }
 }

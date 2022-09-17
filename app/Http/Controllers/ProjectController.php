@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Project $project)
     {
-        return view('pages.project.show');
+        return view('pages.project.show', compact('project'));
     }
 }

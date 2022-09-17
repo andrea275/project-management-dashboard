@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\ProjectController;
+use App\Http\Controllers\API\StatusController;
+use App\Http\Controllers\API\TaskController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('status', [StatusController::class, 'index']);
+Route::apiResource('project', ProjectController::class);
+Route::apiResource('project/{project}/task', TaskController::class);

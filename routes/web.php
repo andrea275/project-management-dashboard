@@ -22,6 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/project', ProjectController::class);
+Route::get('/project/{project}', ProjectController::class);
 
 require __DIR__.'/auth.php';
