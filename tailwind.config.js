@@ -1,14 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
 
-const colorSaveList = [];
-const colors = ['gray', 'yellow', 'orange', 'amber', 'red',  'blue', 'green', 'purple', 'pink'];
+const colorSafeList = [];
+const safeColors = ['gray', 'yellow', 'orange', 'amber', 'red',  'blue', 'green', 'purple', 'pink'];
 
-for (const key in colors) {
-    colorSaveList.push(`text-${colors[key]}-500`);
-    colorSaveList.push(`bg-${colors[key]}-500`);
-    colorSaveList.push(`bg-${colors[key]}-400`);
-    colorSaveList.push(`hover:bg-${colors[key]}-400`);
-    colorSaveList.push(`bg-${colors[key]}-100`);
+for (const key in safeColors) {
+    colorSafeList.push(`text-${safeColors[key]}-500`);
+    colorSafeList.push(`bg-${safeColors[key]}-500`);
+    colorSafeList.push(`bg-${safeColors[key]}-400`);
+    colorSafeList.push(`hover:bg-${safeColors[key]}-400`);
+    colorSafeList.push(`bg-${safeColors[key]}-100`);
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -19,15 +20,16 @@ module.exports = {
         './resources/js/**/*.vue',
         './resources/views/**/*.blade.php',
     ],
-
-    safelist: colorSaveList,
-
+    safelist: colorSafeList,
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
-        },
+            colors: {
+                primary: colors.blue
+            }
+        }
     },
 
     plugins: [require('@tailwindcss/forms')],

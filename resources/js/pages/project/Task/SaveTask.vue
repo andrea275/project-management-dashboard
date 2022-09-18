@@ -6,13 +6,13 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6">
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                        <input type="text" name="title" id="title" v-model="form.title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                        <input type="text" name="title" id="title" v-model="form.title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
                     </div>
 
                     <div class="col-span-6">
                         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                         <div class="mt-1">
-                            <textarea id="description" name="description" v-model="form.description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"></textarea>
+                            <textarea id="description" name="description" v-model="form.description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"></textarea>
                         </div>
                     </div>
 
@@ -33,8 +33,8 @@
             </div>
         </template>
         <template #actions>
-            <VButton color="primary" @click="saveTask">Create</VButton>
             <VButton color="white" @click="$emit('close')">Cancel</VButton>
+            <VButton color="primary" @click="saveTask">Create</VButton>
         </template>
     </modal>
 </template>
