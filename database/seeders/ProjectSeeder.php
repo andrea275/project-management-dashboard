@@ -21,6 +21,8 @@ class ProjectSeeder extends Seeder
             'user_id' => 1
         ]);
 
+        $project->users()->attach(1, ['is_admin' => 1]);
+
         Task::create([
             'title' => 'Mockups',
             'description' => 'Create 12 mockups with a mobile (iPhone 13) view.',

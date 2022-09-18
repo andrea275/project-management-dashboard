@@ -22,6 +22,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/project/{project}', ProjectController::class);
+Route::middleware('auth')->group(function () {
+    Route::prefix('project/{project}')->group(function () {
+        Route::get('/tasks', [ProjectController::class, 'tasks']);
+        Route::get('/users', [ProjectController::class, 'users']);
+    });
+});
 
 require __DIR__.'/auth.php';

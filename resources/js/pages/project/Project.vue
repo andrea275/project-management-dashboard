@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import SaveTask from "./Task/SaveTask.vue";
-import ShowTask from "./Task/ShowTask.vue";
+import SaveTask from "./task/SaveTask.vue";
+import ShowTask from "./task/ShowTask.vue";
 
 export default {
     name: "Project",
