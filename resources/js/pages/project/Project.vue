@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="bg-white shadow rounded px-4 py-2" v-for="task in status.tasks" :key="task.uuid">
-                        <h3 class="text-md font-bold mb-2">{{ task.title }}</h3>
+                        <h3 class="text-md font-bold mb-2 cursor-pointer" @click="activeTask = task">{{ task.title }}</h3>
                         <div class="text-gray-500 text-sm mb-2">{{ task.description }}</div>
                         <div
                             class="inline-flex rounded p-1 text-xs font-bold"
@@ -71,10 +71,12 @@
     </div>
 
     <SaveTask :project-slug="projectSlug" v-if="saveTask" @close="saveTask = false"></SaveTask>
+    <ShowTask :task="activeTask" v-if="activeTask" @close="activeTask = null"></ShowTask>
 </template>
 
 <script>
 import SaveTask from "./Task/SaveTask.vue";
+import ShowTask from "./Task/ShowTask.vue";
 
 export default {
     name: "Project",
@@ -85,7 +87,8 @@ export default {
         }
     },
     components: {
-        SaveTask
+        SaveTask,
+        ShowTask
     },
     data() {
         return {
@@ -93,7 +96,8 @@ export default {
             statuses: null,
             saveTask: false,
             tasks: [],
-            loading: true
+            loading: true,
+            activeTask: null
         }
     },
     async mounted() {
@@ -121,7 +125,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

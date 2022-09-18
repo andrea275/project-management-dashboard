@@ -22,12 +22,12 @@ class PrioritySeeder extends Seeder
 
         Priority::create([
             'name' => 'Medium',
-            'color' => 'yellow'
+            'color' => 'amber'
         ]);
 
         Priority::create([
             'name' => 'High',
-            'color' => 'amber'
+            'color' => 'pink'
         ]);
 
         Priority::create([
