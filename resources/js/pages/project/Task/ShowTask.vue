@@ -50,6 +50,59 @@
             <div class="mt-6">
                 <div class="text-sm font-medium text-gray-500 border-b border-gray-200 pb-2 mb-4">Description</div>
                 <div class="text-sm font-medium text-gray-900">{{ task.description }}</div>
+
+                <div class="mt-6">
+                    <textarea id="comment" name="comment" v-model="form.comment" rows="3" placeholder="Comment on this task" class="mt-1 block w-full rounded-md border-transparent bg-gray-100 shadow-sm text-gray-900 focus:border-gray-300 focus:ring-gray-300 sm:text-sm"></textarea>
+                </div>
+
+                <div class="flex justify-end mt-2">
+                    <VButton color="primary">Publish</VButton>
+                </div>
+
+                <div class="mt-6">
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <div class="text-sm font-semibold text-gray-900">Candice Wu</div>
+                                <div class="text-xl font-medium text-gray-500">&#183;</div>
+                                <div class="text-xs font-medium text-gray-500">1 hour ago</div>
+                            </div>
+                            <div class="p-1 cursor-pointer rounded text-gray-500 hover-bg-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                    <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-500">
+                            Hi
+                            <span class="bg-primary-200 text-primary-500 font-semibold px-0.5 pb-0.5 rounded">@OrlandoDigs</span> ,
+                            let's meet today. I want to tell you about my ideas. Maybe there we can share thoughts.
+                            I'll send you the link on Discord.
+                        </div>
+
+                        <div class="mt-3 ml-6">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center space-x-2">
+                                    <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">
+                                    <div class="text-sm font-semibold text-gray-900">Orlando Diggs</div>
+                                    <div class="text-xl font-medium text-gray-500">&#183;</div>
+                                    <div class="text-xs font-medium text-gray-500">48 minutes ago</div>
+                                </div>
+                                <div class="p-1 cursor-pointer rounded text-gray-500 hover-bg-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                                        <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-500">
+                                Alright
+                                <span class="bg-primary-200 text-primary-500 font-semibold px-0.5 pb-0.5 rounded">@CandiceWu</span> ,
+                                i'll be waiting.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </template>
         <template #actions>
@@ -65,6 +118,13 @@ export default {
         task: {
             type: Object,
             required: true
+        }
+    },
+    data() {
+        return {
+            form: {
+                comment: null
+            }
         }
     }
 }
