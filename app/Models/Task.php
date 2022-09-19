@@ -27,6 +27,7 @@ class Task extends Model
 
     static $rules = [
         'title' => ['required', 'string', 'max:255'],
+        'description' => ['nullable', 'string'],
         'status' => ['required', 'integer', 'exists:statuses,id'],
         'priority' => ['nullable', 'integer', 'exists:priorities,id'],
     ];

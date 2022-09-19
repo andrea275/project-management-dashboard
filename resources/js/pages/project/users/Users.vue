@@ -6,7 +6,7 @@
         </h1>
 
         <div class="overflow-x-auto relative">
-            <div class="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
+            <div class="flex justify-between items-center pb-4 bg-white">
                 <div>
                     <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                         <span class="sr-only">Role button</span>
@@ -35,6 +35,7 @@
                     </div>
                     <input type="text" id="table-search-users" class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
                 </div>
+                <VButton color="primary" @click="addUser = true">Add User</VButton>
             </div>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -83,9 +84,13 @@
             </table>
         </div>
     </div>
+
+    <AddUser :project-slug="projectSlug" v-if="addUser" @close="addUser = false"></AddUser>
 </template>
 
 <script>
+import AddUser from "./AddUser.vue";
+
 export default {
     name: "Users",
     props: {
@@ -94,9 +99,13 @@ export default {
             required: true
         }
     },
+    components: {
+        AddUser
+    },
     data() {
         return {
-            users: []
+            users: [],
+            addUser: false
         }
     },
     mounted() {

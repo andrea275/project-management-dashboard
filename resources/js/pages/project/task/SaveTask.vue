@@ -4,17 +4,31 @@
         <template #content>
             <div class="space-y-6 bg-white">
                 <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-6">
-                        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                        <input type="text" name="title" id="title" v-model="form.title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
-                    </div>
+                    <VDefaultField
+                        classes="col-span-6 space-y-1"
+                        :error="errors.get('title')"
+                    >
+                        <VLabel labelFor="title">Title</VLabel>
+                        <VInput
+                            id="title"
+                            :error="errors.get('title')"
+                            v-model="form.title"
+                            @input="errors.clear('title')"
+                        ></VInput>
+                    </VDefaultField>
 
-                    <div class="col-span-6">
-                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <div class="mt-1">
-                            <textarea id="description" name="description" v-model="form.description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"></textarea>
-                        </div>
-                    </div>
+                    <VDefaultField
+                        classes="col-span-6 space-y-1"
+                        :error="errors.get('description')"
+                    >
+                        <VLabel labelFor="description">Description</VLabel>
+                        <VTextarea
+                            id="description"
+                            :error="errors.get('description')"
+                            v-model="form.description"
+                            @input="errors.clear('description')"
+                        ></VTextarea>
+                    </VDefaultField>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
@@ -40,6 +54,8 @@
 </template>
 
 <script>
+import Errors from "../../../helpers/Errors";
+
 export default {
     name: "SaveTask",
     emits: ['close'],
@@ -58,7 +74,8 @@ export default {
                 priority: null
             },
             statuses: [],
-            priorities: []
+            priorities: [],
+            errors: new Errors()
         }
     },
     mounted() {
@@ -75,9 +92,20 @@ export default {
             this.priorities = data.data;
         },
         async saveTask() {
-            //await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm());
-            await axios.post(`/api/project/${this.projectSlug}/task`, this.form);
-            this.$emit('close');
+            try {
+                //await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm());
+                await axios.post(`/api/project/${this.projectSlug}/task`, this.form);
+                this.$emit('close');
+
+                toastr.success('Task saved successfully!');
+            } catch (errors) {
+                if (errors.response.status === 422) {
+                    this.errors.record(errors.response.data.errors);
+                    return;
+                }
+
+                toastr.error('An error occurred!');
+            }
         },
         clearForm() {
             const form = Object.assign({}, this.form);
@@ -90,7 +118,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
