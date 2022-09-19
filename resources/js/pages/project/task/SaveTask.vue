@@ -30,19 +30,35 @@
                         ></VTextarea>
                     </VDefaultField>
 
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                        <select id="status" name="status" v-model="form.status" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                            <option v-for="status in statuses" :value="status.id">{{ status.name }}</option>
-                        </select>
-                    </div>
+                    <VDefaultField
+                        classes="col-span-6 space-y-1"
+                        :error="errors.get('status')"
+                    >
+                        <VLabel labelFor="status">Status</VLabel>
+                        <VMultiselect
+                            id="status"
+                            label="name"
+                            track-by="id"
+                            classes="mt-1"
+                            :options="statuses"
+                            v-model="form.status"
+                        ></VMultiselect>
+                    </VDefaultField>
 
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="priority" class="block text-sm font-medium text-gray-700">Priority</label>
-                        <select id="priority" name="priority" v-model="form.priority" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                            <option v-for="priority in priorities" :value="priority.id">{{ priority.name }}</option>
-                        </select>
-                    </div>
+                    <VDefaultField
+                        classes="col-span-6 space-y-1"
+                        :error="errors.get('priority')"
+                    >
+                        <VLabel labelFor="priority">Priority</VLabel>
+                        <VMultiselect
+                            id="priority"
+                            label="name"
+                            track-by="id"
+                            classes="mt-1"
+                            :options="priorities"
+                            v-model="form.priority"
+                        ></VMultiselect>
+                    </VDefaultField>
                 </div>
             </div>
         </template>
