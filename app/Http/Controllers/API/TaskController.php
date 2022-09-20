@@ -7,6 +7,7 @@ use App\Http\Requests\Task\DeleteTask;
 use App\Http\Requests\Task\StoreTask;
 use App\Http\Requests\Task\UpdateTask;
 use App\Http\Resources\TaskResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Task;
@@ -31,6 +32,9 @@ class TaskController extends Controller
             'user_id' => auth()->id()
         ]);
 
+        $users = User::whereIn('token', $request->users)->get()->pluck('id');
+        $task->users()->attach($users);
+
         return new TaskResource($task);
     }
 
@@ -46,6 +50,9 @@ class TaskController extends Controller
             'project_id' => $project->id,
             'user_id' => auth()->id(),
         ]);
+
+        $users = User::whereIn('token', $request->users)->get()->pluck('id');
+        $task->users()->sync($users);
 
         return new TaskResource($task);
     }

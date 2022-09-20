@@ -15,7 +15,7 @@ class PriorityResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'slug' => $this->slug,
+            'id' => $this->id,
             'name' => $this->name,
             'color' => $this->color
         ];

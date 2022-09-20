@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('priorities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('color');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('token');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('priorities');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

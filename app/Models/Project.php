@@ -14,7 +14,8 @@ class Project extends Model
 
     protected $guarded = ['id'];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
         static::creating(function ($project) {

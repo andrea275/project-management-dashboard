@@ -4,6 +4,7 @@
         :track-by="trackBy"
         :options="options"
         :multiple="multiple"
+        :closeOnSelect="closeOnSelect"
         :model-value="modelValue"
         @update:model-value="$emit('update:modelValue', $event)"
     ></VueMultiselect>
@@ -32,6 +33,10 @@ export default {
         multiple: {
             type: Boolean,
             default: false
+        },
+        closeOnSelect: {
+            type: Boolean,
+            default: true
         },
         modelValue: {},
     }

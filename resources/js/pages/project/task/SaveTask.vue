@@ -59,6 +59,23 @@
                             v-model="form.priority"
                         ></VMultiselect>
                     </VDefaultField>
+
+                    <VDefaultField
+                        classes="col-span-6 space-y-1"
+                        :error="errors.get('users')"
+                    >
+                        <VLabel labelFor="users">Assign Users</VLabel>
+                        <VMultiselect
+                            id="users"
+                            label="name"
+                            track-by="token"
+                            classes="mt-1"
+                            :options="users"
+                            :multiple="true"
+                            :closeOnSelect="false"
+                            v-model="form.users"
+                        ></VMultiselect>
+                    </VDefaultField>
                 </div>
             </div>
         </template>
@@ -87,18 +104,25 @@ export default {
                 title: null,
                 description: null,
                 status: null,
-                priority: null
+                priority: null,
+                users: []
             },
+            users: [],
             statuses: [],
             priorities: [],
             errors: new Errors()
         }
     },
     mounted() {
+        this.fetchUsers();
         this.fetchStatuses();
         this.fetchPriorities();
     },
     methods: {
+        async fetchUsers() {
+            const {data} = await axios.get(`/api/project/${this.projectSlug}/user`);
+            this.users = data.data;
+        },
         async fetchStatuses() {
             const {data} = await axios.get('/api/status');
             this.statuses = data.data;
@@ -109,8 +133,7 @@ export default {
         },
         async saveTask() {
             try {
-                //await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm());
-                await axios.post(`/api/project/${this.projectSlug}/task`, this.form);
+                await axios.post(`/api/project/${this.projectSlug}/task`, this.clearForm());
                 this.$emit('close');
 
                 toastr.success('Task saved successfully!');
@@ -126,8 +149,9 @@ export default {
         clearForm() {
             const form = Object.assign({}, this.form);
 
-            form.status = this.form.status.id;
-            form.priority = this.form.priority.id;
+            form.status = this.form.status?.id || '';
+            form.priority = this.form.priority?.id || '';
+            form.users = this.form.users.map(user => user.token);
 
             return form;
         }
