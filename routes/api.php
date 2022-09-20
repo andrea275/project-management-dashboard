@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\PriorityController;
-use App\Http\Controllers\API\ProjectController;
-use App\Http\Controllers\API\StatusController;
-use App\Http\Controllers\API\TaskController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\Project\PriorityController;
+use App\Http\Controllers\API\Project\ProjectController;
+use App\Http\Controllers\API\Project\StatusController;
+use App\Http\Controllers\API\Project\TaskController;
+use App\Http\Controllers\API\Project\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -26,8 +26,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->group(function () {
     Route::get('status', [StatusController::class, 'index']);
     Route::get('project/{project}/status-with-task-count', [StatusController::class, 'statusWithTaskCount']);
+
     Route::get('priority', [PriorityController::class, 'index']);
+
     Route::apiResource('project', ProjectController::class);
     Route::apiResource('project/{project}/task', TaskController::class);
-    Route::apiResource('project/{project}/user', UserController::class);
+
+    Route::prefix('project/{project}/user')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{user}', [UserController::class, 'update']);
+        Route::delete('/{user}', [UserController::class, 'destroy']);
+        Route::post('/invite', [UserController::class, 'invite']);
+        Route::get('/accept-invitation', [UserController::class, 'acceptInvitation']);
+    });
 });

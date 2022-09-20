@@ -1,22 +1,9 @@
 <template>
     <modal @close="$emit('close')">
-        <template #title>Add User</template>
+        <template #title>Send Invitation</template>
         <template #content>
             <div class="space-y-6 bg-white">
                 <div class="grid grid-cols-6 gap-6">
-                    <VDefaultField
-                        classes="col-span-6 space-y-1"
-                        :error="errors.get('name')"
-                    >
-                        <VLabel labelFor="name">Name</VLabel>
-                        <VInput
-                            id="name"
-                            :error="errors.get('name')"
-                            v-model="form.name"
-                            @input="errors.clear('name')"
-                        ></VInput>
-                    </VDefaultField>
-
                     <VDefaultField
                         classes="col-span-6 space-y-1"
                         :error="errors.get('email')"
@@ -42,7 +29,7 @@
         </template>
         <template #actions>
             <VButton color="white" @click="$emit('close')">Cancel</VButton>
-            <VButton color="primary" @click="saveUser">Create</VButton>
+            <VButton color="primary" @click="saveUser">Send</VButton>
         </template>
     </modal>
 </template>
@@ -62,7 +49,6 @@ export default {
     data() {
         return {
             form: {
-                name: null,
                 email: null,
                 isAdmin: false
             },
@@ -72,7 +58,7 @@ export default {
     methods: {
         async saveUser() {
             try {
-                await axios.post(`/api/project/${this.projectSlug}/user`, this.form);
+                await axios.post(`/api/project/${this.projectSlug}/user/invite`, this.form);
                 this.$emit('close');
 
                 toastr.success('User added successfully!');

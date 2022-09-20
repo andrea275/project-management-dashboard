@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Project;
 
 use App\Http\Requests\Project\DeleteProject;
 use App\Http\Requests\Project\UpdateProject;

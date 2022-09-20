@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Project;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\DeleteTask;
