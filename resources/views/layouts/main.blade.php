@@ -14,9 +14,11 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<div class="flex" id="app">
+<div class="flex flex-row min-h-screen" id="app">
     @include('partials.sidebar')
-    @yield('content')
+    <div class="w-full">
+        @yield('content')
+    </div>
 </div>
 
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

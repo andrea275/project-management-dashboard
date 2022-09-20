@@ -24,8 +24,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('project/{project}')->group(function () {
-        Route::get('/tasks', [ProjectController::class, 'tasks']);
-        Route::get('/users', [ProjectController::class, 'users']);
+        Route::get('/dashboard', [ProjectController::class, 'dashboard'])->name('project.dashboard');
+        Route::get('/tasks', [ProjectController::class, 'tasks'])->name('project.tasks');
+        Route::get('/users', [ProjectController::class, 'users'])->name('project.users');
     });
 });
 
