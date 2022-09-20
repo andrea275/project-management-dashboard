@@ -23,6 +23,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/projects', [ProjectController::class, 'index']);
+
     Route::prefix('project/{project}')->group(function () {
         Route::get('/dashboard', [ProjectController::class, 'dashboard'])->name('project.dashboard');
         Route::get('/tasks', [ProjectController::class, 'tasks'])->name('project.tasks');

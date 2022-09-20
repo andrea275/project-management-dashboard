@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class ProjectResource extends JsonResource
 {
@@ -17,7 +18,8 @@ class ProjectResource extends JsonResource
         return [
             'slug' => $this->slug,
             'title' => $this->title,
-            'user' => new UserResource($this->user)
+            'user' => new UserResource($this->user),
+            'createdAt' => Carbon::parse($this->created_at)->toFormattedDateString()
         ];
     }
 }

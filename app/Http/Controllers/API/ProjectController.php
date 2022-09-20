@@ -13,7 +13,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = auth()->user()->projects()->orderBy('created_at', 'desc')->get();
 
         return ProjectResource::collection($projects);
     }
@@ -22,8 +22,11 @@ class ProjectController extends Controller
     {
         $project = Project::create([
             'title' => $request->title,
+            'description' => $request->description,
             'user_id' => auth()->id(),
         ]);
+
+        auth()->user()->projects()->attach($project->id, ['is_admin' => true]);
 
         return new ProjectResource($project);
     }

@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         async setChart() {
-            const {data} = await axios.get(`/api/project/${this.projectSlug}/statusWithTaskCount`);
+            const {data} = await axios.get(`/api/project/${this.projectSlug}/status-with-task-count`);
 
             const labels = data.map(status => status.name);
             const colors = data.map(status => this.colors[status.color]);

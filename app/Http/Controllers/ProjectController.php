@@ -6,6 +6,11 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
+    public function index()
+    {
+        return view('pages.project.index');
+    }
+
     public function dashboard(Project $project)
     {
         return view('pages.project.dashboard', compact('project'));

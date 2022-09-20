@@ -33,7 +33,8 @@ class Project extends Model
     }
 
     static $rules = [
-        'title' => ['required', 'string', 'max:255']
+        'title' => ['required', 'string', 'max:255'],
+        'description' => ['nullable', 'string', 'max:255']
     ];
 
     public function user(): BelongsTo
