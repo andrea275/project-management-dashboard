@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('status', [StatusController::class, 'index']);
+    Route::get('project/{project}/statusWithTaskCount', [StatusController::class, 'statusWithTaskCount']);
     Route::get('priority', [PriorityController::class, 'index']);
     Route::apiResource('project', ProjectController::class);
     Route::apiResource('project/{project}/task', TaskController::class);

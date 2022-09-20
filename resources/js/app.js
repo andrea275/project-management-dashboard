@@ -22,6 +22,7 @@ import VMultiselect from "./components/UI/VMultiselect.vue";
 import VButton from "./components/UI/VButton.vue";
 import Modal from "./components/Modal.vue";
 import Project from "./pages/project/Project.vue";
+import Dashboard from "./pages/project/Dashboard.vue";
 import Users from "./pages/project/users/Users.vue";
 
 app.component('VDefaultField', VDefaultField);
@@ -32,6 +33,7 @@ app.component('VMultiselect', VMultiselect);
 app.component('VButton', VButton);
 app.component('Modal', Modal);
 app.component('Project', Project);
+app.component('Dashboard', Dashboard);
 app.component('Users', Users);
 
 app.mount('#app');

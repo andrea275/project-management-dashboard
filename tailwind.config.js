@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors')
 
 const colorSafeList = [];
-const safeColors = ['gray', 'yellow', 'orange', 'amber', 'red',  'blue', 'green', 'purple', 'pink'];
+const safeColors = ['gray', 'yellow', 'orange', 'amber', 'red', 'blue', 'green', 'purple', 'pink'];
 
 for (const key in safeColors) {
     colorSafeList.push(`text-${safeColors[key]}-500`);

@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-{{--    <Users project-slug="{{ $project->slug }}"></Users>--}}
+    <Dashboard project-slug="{{ $project->slug }}"></Dashboard>
 @endsection

@@ -1,6 +1,6 @@
 <template>
     <div v-if="loading"></div>
-    <div class="px-12 py-12" v-else>
+    <div class="p-12" v-else>
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block mb-16">
             {{ project.title }}
         </h1>
