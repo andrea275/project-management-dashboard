@@ -36,10 +36,20 @@
                         </div>
                         <div class="flex justify-between items-center mt-4">
                             <div class="flex -space-x-1 overflow-hidden">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">
-                                <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <div v-for="user in task.assignedUsers" :key="user.token">
+                                    <img
+                                        class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                                        :src="user.image"
+                                        :alt="user.name"
+                                        :title="user.name"
+                                        v-if="user.image"
+                                    >
+                                    <div class="inline-flex overflow-hidden relative justify-center items-center w-6 h-6 bg-gray-100 rounded-full dark:bg-gray-600" :title="user.name" v-else>
+                                        <span class="font-medium text-gray-600 dark:text-gray-300 text-xs">
+                                            {{ getFirstLetters(user.name) }}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="flex items-center text-sm text-gray-500 space-x-2">
@@ -126,7 +136,13 @@ export default {
         newTask(status) {
             this.saveTask = true;
             this.newTaskStatus = status;
-        }
+        },
+        getFirstLetters(str) {
+            return str
+                .split(' ')
+                .map(word => word[0])
+                .join('');
+}
     }
 }
 </script>
