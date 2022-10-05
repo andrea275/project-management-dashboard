@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Project\PriorityController;
+use App\Http\Controllers\API\Project\CommentController;
 use App\Http\Controllers\API\Project\ProjectController;
 use App\Http\Controllers\API\Project\StatusController;
 use App\Http\Controllers\API\Project\TaskController;
@@ -39,4 +40,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/invite', [UserController::class, 'invite']);
         Route::get('/accept-invitation', [UserController::class, 'acceptInvitation']);
     });
+
+    Route::post('task/{task}/comment', [CommentController::class, 'store']);
+    Route::delete('task/{task}/comment/{comment}', [CommentController::class, 'destroy']);
 });

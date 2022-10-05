@@ -22,7 +22,8 @@ class TaskResource extends JsonResource
             'priority' => new PriorityResource($this->priority),
             'project' => new ProjectResource($this->project),
             'user' => new UserResource($this->user),
-            'assignedUsers' => UserResource::collection($this->users)
+            'assignedUsers' => UserResource::collection($this->users),
+            'comments' => CommentResource::collection($this->comments)
         ];
     }
 }
