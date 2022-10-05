@@ -17,7 +17,7 @@
                                 {{ status.tasks.length }}
                             </div>
                         </div>
-                        <div class="p-1 cursor-pointer rounded" :class="`hover:bg-${status.color}-400`" @click="saveTask = true">
+                        <div class="p-1 cursor-pointer rounded" :class="`hover:bg-${status.color}-400`" @click="newTask(status.id)">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                                 <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                             </svg>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-gray-400 rounded px-4 py-1 text-sm text-gray-700 hover:text-gray-900 cursor-pointer" @click="saveTask = true">
+                    <div class="flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-gray-400 rounded px-4 py-1 text-sm text-gray-700 hover:text-gray-900 cursor-pointer" @click="newTask(status.id)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                             <path d="M10.75 6.75a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" />
                         </svg>
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <SaveTask :project-slug="projectSlug" v-if="saveTask" @close="saveTask = false"></SaveTask>
+    <SaveTask :project-slug="projectSlug" :status="newTaskStatus" v-if="saveTask" @close="saveTask = false"></SaveTask>
     <ShowTask :task="activeTask" v-if="activeTask" @close="activeTask = null"></ShowTask>
 </template>
 
@@ -97,7 +97,8 @@ export default {
             saveTask: false,
             tasks: [],
             loading: true,
-            activeTask: null
+            activeTask: null,
+            newTaskStatus: null
         }
     },
     async mounted() {
@@ -121,6 +122,10 @@ export default {
             this.statuses.forEach((status) => {
                 status.tasks = data.data.filter(task => task.status.id === status.id);
             });
+        },
+        newTask(status) {
+            this.saveTask = true;
+            this.newTaskStatus = status;
         }
     }
 }

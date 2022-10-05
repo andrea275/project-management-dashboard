@@ -96,7 +96,8 @@ export default {
         projectSlug: {
             type: String,
             required: true
-        }
+        },
+        status: String
     },
     data() {
         return {
@@ -126,6 +127,8 @@ export default {
         async fetchStatuses() {
             const {data} = await axios.get('/api/status');
             this.statuses = data.data;
+
+            if (this.status) this.form.status = this.statuses.find(status => status.id === this.status);
         },
         async fetchPriorities() {
             const {data} = await axios.get('/api/priority');
