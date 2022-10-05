@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         $user = User::whereEmail($invitedUser->email)->first();
 
-        $project->users()->attach($user->id, ['is_admin' => $request->isAdmin]);
+        $project->users()->attach($user->id, ['is_admin' => $invitedUser->is_admin]);
 
         return new UserResource($user);
     }
