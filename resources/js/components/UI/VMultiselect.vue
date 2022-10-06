@@ -5,6 +5,8 @@
         :options="options"
         :multiple="multiple"
         :closeOnSelect="closeOnSelect"
+        :preselect-first="preselectFirst"
+        :allow-empty="allowEmpty"
         :model-value="modelValue"
         @update:model-value="$emit('update:modelValue', $event)"
     ></VueMultiselect>
@@ -35,6 +37,14 @@ export default {
             default: false
         },
         closeOnSelect: {
+            type: Boolean,
+            default: true
+        },
+        preselectFirst: {
+            type: Boolean,
+            default: false
+        },
+        allowEmpty: {
             type: Boolean,
             default: true
         },

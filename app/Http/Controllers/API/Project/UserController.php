@@ -18,7 +18,18 @@ class UserController extends Controller
 {
     public function index(Project $project)
     {
-        return UserResource::collection($project->users);
+        $term = request()->query('term');
+        $role = request()->query('admin');
+
+        $users = $project->users();
+
+        if ($term) $users = $users->where('name', 'like', '%' . $term . '%');
+        if ($role === 'admin') $users = $users->wherePivot('is_admin', true);
+        if ($role === 'editor') $users = $users->wherePivot('is_admin', false);
+
+        $users = $users->get();
+
+        return UserResource::collection($users);
     }
 
     public function update(UpdateUser $request, Project $project, User $user)
