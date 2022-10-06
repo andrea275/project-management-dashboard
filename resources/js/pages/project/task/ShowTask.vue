@@ -10,7 +10,12 @@
                         </svg>
                         <span class="ml-2">Assignee</span>
                     </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Margot Foster</dd>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <span v-for="(user, index) in task.assignedUsers" :key="index">
+                            {{ user.name }}
+                            <span v-if="index < task.assignedUsers - 1">, </span>
+                        </span>
+                    </dd>
                 </div>
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4">
                     <dt class="flex items-center text-sm font-medium text-gray-500">
