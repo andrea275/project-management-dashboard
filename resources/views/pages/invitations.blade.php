@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-    <Projects></Projects>
+    <Invitations></Invitations>
 @endsection

@@ -15,7 +15,10 @@
 </head>
 <body>
 <div class="flex flex-row min-h-screen" id="app">
-    @yield('content')
+    @include('partials.sidebar')
+    <div class="w-full">
+        @yield('content')
+    </div>
 </div>
 
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

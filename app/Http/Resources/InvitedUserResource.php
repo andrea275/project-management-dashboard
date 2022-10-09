@@ -16,7 +16,9 @@ class InvitedUserResource extends JsonResource
     {
         return [
             'token' => $this->token,
-            'email' => $this->email
+            'email' => $this->email,
+            'user' => new UserResource($this->user),
+            'project' => new ProjectResource($this->project)
         ];
     }
 }

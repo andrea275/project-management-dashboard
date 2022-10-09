@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.project')
 
 @section('content')
     <Users project-slug="{{ $project->slug }}"></Users>

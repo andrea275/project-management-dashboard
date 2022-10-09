@@ -26,6 +26,7 @@ import Projects from "./pages/projects/Projects.vue";
 import Project from "./pages/project/Project.vue";
 import Dashboard from "./pages/project/Dashboard.vue";
 import Users from "./pages/project/users/Users.vue";
+import Invitations from "./pages/Invitations.vue";
 
 app.component('VDefaultField', VDefaultField);
 app.component('VLabel', VLabel);
@@ -39,5 +40,6 @@ app.component('Projects', Projects);
 app.component('Project', Project);
 app.component('Dashboard', Dashboard);
 app.component('Users', Users);
+app.component('Invitations', Invitations);
 
 app.mount('#app');

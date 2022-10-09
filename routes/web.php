@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
+    Route::get('/invitations', [InvitationController::class, 'index'])->name('invitations');
 
     Route::prefix('project/{project}')->group(function () {
         Route::get('/dashboard', [ProjectController::class, 'dashboard'])->name('project.dashboard');
