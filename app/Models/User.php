@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class)->withPivot('is_admin');
     }
+
+    public function isAdmin(Project $project)
+    {
+        return $project->users()->where('user_id', auth()->id())->first()->pivot->is_admin;
+    }
 }

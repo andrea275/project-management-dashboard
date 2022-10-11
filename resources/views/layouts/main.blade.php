@@ -14,11 +14,14 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+@include('partials.navbar')
 <div class="flex flex-row min-h-screen" id="app">
-    @yield('content')
+    <div class="p-12 max-w-7xl mx-auto">
+        @yield('content')
+    </div>
 </div>
 
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @vite('resources/js/app.js')
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

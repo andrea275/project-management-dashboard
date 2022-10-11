@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\InvitedUser;
+use App\Models\Invitation;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Bus\Queueable;

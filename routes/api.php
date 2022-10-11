@@ -27,7 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('status', [StatusController::class, 'index']);
-    Route::get('invitations', [InvitationController::class, 'index']);
     Route::get('project/{project}/status-with-task-count', [StatusController::class, 'statusWithTaskCount']);
 
     Route::get('priority', [PriorityController::class, 'index']);
@@ -40,7 +39,12 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{user}', [UserController::class, 'update']);
         Route::delete('/{user}', [UserController::class, 'destroy']);
         Route::post('/invite', [UserController::class, 'invite']);
-        Route::get('/accept-invitation', [UserController::class, 'acceptInvitation']);
+    });
+
+    Route::prefix('invitation')->group(function () {
+        Route::get('/', [InvitationController::class, 'index']);
+        Route::delete('{invitation}', [InvitationController::class, 'destroy']);
+        Route::get('{invitation}/accept', [InvitationController::class, 'accept']);
     });
 
     Route::post('task/{task}/comment', [CommentController::class, 'store']);

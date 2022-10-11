@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class InvitedUser extends Model
+class Invitation extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
 
     protected static function boot()
     {
@@ -28,8 +30,6 @@ class InvitedUser extends Model
     {
         return 'token';
     }
-
-    protected $guarded = ['id'];
 
     public function user(): BelongsTo
     {

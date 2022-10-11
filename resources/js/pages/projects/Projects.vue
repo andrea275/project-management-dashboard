@@ -1,8 +1,8 @@
 <template>
-    <div class="flex justify-center items-center w-full" v-if="loading">
+    <div class="flex justify-center items-center h-full" v-if="loading">
         <Loader></Loader>
     </div>
-    <div class="p-12 max-w-7xl mx-auto" v-else>
+    <div v-else>
         <div class="flex justify-between items-center mb-16">
             <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block">
                 Projects

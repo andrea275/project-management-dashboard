@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API\Project;
 
-use App\Http\Resources\InvitedUserResource;
+use App\Http\Resources\InvitationResource;
 use App\Http\Requests\User\UpdateUser;
 use App\Http\Requests\User\DetachUser;
 use App\Http\Requests\User\StoreUser;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Mail;
-use App\Models\InvitedUser;
+use App\Models\Invitation;
 use App\Mail\InviteUser;
 use App\Models\Project;
 use App\Models\User;
@@ -46,9 +46,10 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
+    //todo change request name
     public function invite(StoreUser $request, Project $project)
     {
-        $invitedUser = InvitedUser::updateOrCreate([
+        $invitation = Invitation::updateOrCreate([
             'email' => $request->email,
             'user_id' => auth()->id(),
             'project_id' => $project->id
@@ -56,17 +57,8 @@ class UserController extends Controller
             'is_admin' => $request->isAdmin
         ]);
 
-        Mail::to($invitedUser->email)->send(new InviteUser($project, User::find(auth()->id())));
+        Mail::to($invitation->email)->send(new InviteUser($project, User::find(auth()->id())));
 
-        return new InvitedUserResource($invitedUser);
-    }
-
-    public function acceptInvitation(StoreUser $request, Project $project, InvitedUser $invitedUser)
-    {
-        $user = User::whereEmail($invitedUser->email)->first();
-
-        $project->users()->attach($user->id, ['is_admin' => $invitedUser->is_admin]);
-
-        return new UserResource($user);
+        return new InvitationResource($invitation);
     }
 }
