@@ -1,9 +1,9 @@
-<nav x-data="{menuOpen: false}" class="bg-gray-800">
+<nav x-data="{menuOpen: false}" class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
-                <button x-on:click="menuOpen = !menuOpen" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                <button x-on:click="menuOpen = !menuOpen" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-primary-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <template x-if="!menuOpen">
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -20,15 +20,14 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-                    <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                    <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600" alt="Your Company">
+                    <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600" alt="Your Company">
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="{{ route('projects') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('projects')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif" aria-current="page">Projects</a>
+                        <a href="{{ route('projects') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('projects')) bg-primary-600 text-white @else text-gray-700 hover:bg-primary-500 hover:text-white @endif" aria-current="page">Projects</a>
 
-                        <a href="{{ route('invitations') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('invitations')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif">Invitations</a>
+                        <a href="{{ route('invitations') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('invitations')) bg-primary-600 text-white @else text-gray-700 hover:bg-primary-500 hover:text-white @endif">Invitations</a>
                     </div>
                 </div>
             </div>
@@ -67,9 +66,9 @@
     <template x-if="menuOpen">
         <div class="sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium @if(request()->routeIs('projects')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif" aria-current="page">Projects</a>
+                <a href="{{ route('projects') }}" class="block px-3 py-2 rounded-md text-base font-medium @if(request()->routeIs('projects')) bg-primary-600 text-white @else text-gray-700 hover:bg-primary-500 hover:text-white @endif" aria-current="page">Projects</a>
 
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium @if(request()->routeIs('invitations')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif">Invitations</a>
+                <a href="{{ route('invitations') }}" class="block px-3 py-2 rounded-md text-base font-medium @if(request()->routeIs('invitations')) bg-primary-600 text-white @else text-gray-700 hover:bg-primary-500 hover:text-white @endif">Invitations</a>
             </div>
         </div>
     </template>
