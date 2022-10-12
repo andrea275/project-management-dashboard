@@ -3,8 +3,8 @@
         <Loader></Loader>
     </div>
     <div v-else>
-        <div class="flex justify-between items-center mb-16">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block">
+        <div class="sm:flex justify-between items-center mb-12 sm:mb-16">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl block mb-4 sm:mb-0">
                 Projects
             </h1>
             <VButton color="primary" @click="createProject = true">
@@ -15,8 +15,8 @@
             </VButton>
         </div>
 
-        <div class="grid grid-cols-3 gap-4">
-            <a :href="`/project/${project.slug}/dashboard`" class="p-6 bg-white border border-gray-200 overflow-hidden shadow sm:rounded-lg" v-for="project in projects" :key="project.slug">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <a :href="`/project/${project.slug}/dashboard`" class="block p-6 bg-white border border-gray-200 overflow-hidden shadow rounded-lg" v-for="project in projects" :key="project.slug">
                 <h2 class="text-gray-900 text-xl font-semibold mb-4">{{ project.title }}</h2>
 
                 <div class="flex -space-x-1 overflow-hidden mb-2">
