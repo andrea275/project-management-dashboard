@@ -61,8 +61,6 @@
                                 </svg>
                             </button>
                         </div>
-<!--                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Accept</a>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Deny</a>-->
                     </td>
                 </tr>
                 </tbody>
